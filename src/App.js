@@ -18,7 +18,7 @@ function App() {
   const [Todos, setTodos] = useState([])
   const [input, setInput] = useState('')
 
-// Create todo
+
 const createTodo = async (e) => {
   e.preventDefault(e)
   if(input === '') {
@@ -32,7 +32,7 @@ const createTodo = async (e) => {
   setInput('')
 }
 
-// Read todo from firebase
+
 useEffect(()=> {
   const q = query(collection(db, 'todos'))
   const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -45,14 +45,14 @@ useEffect(()=> {
   return () => unsubscribe()
 },[])
 
-// Update todo in firebase
+
 const toggleComplete = async (todo) => {
   await updateDoc(doc(db, 'todos', todo.id), {
     completed: !todo.completed
   })
 }
 
-// Delete todo 
+
 const deleteTodo = async (id) => {
   await deleteDoc(doc(db, 'todos', id))
 }
